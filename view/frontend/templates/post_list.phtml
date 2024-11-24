@@ -1,0 +1,99 @@
+<?php
+
+/**
+ * @category  Ambienz
+ * @package   Ambienz_MageWP
+ * @copyright Copyright © 2024 Denis Almeida | Ambienz
+ * @author    Denis Almeida <https://www.ambienz.com.br>
+ */
+
+/** @var \Ambienz\MageWP\Block\ListPost\ListPost $block */
+/** @var Escaper $escaper */
+
+$posts = $block->getPostList();
+?>
+
+<?php if ($block->isApiConfigured()): ?>
+    <div class="posts" id="posts">
+        <div class="post-heading"><?= $escaper->escapeHtml(__('Latest Posts from Blog')) ?></div>
+        <?php if (!empty($posts)): ?>
+            <div class="post-list">
+                <?php foreach ($posts as $post): ?>
+                    <div class="post-card">
+                        <div class="card-header">
+                            <?php
+                            $imageUrl = null;
+                            if (isset($post['featured_media'])) {
+                                $imageUrl = $block->getPostImage($post['featured_media']);
+                            }
+                            if ($imageUrl): ?>
+                                <img src="<?= $escaper->escapeUrl($imageUrl) ?>"
+                                     alt="<?= $escaper->escapeHtml($post['title']['rendered']) ?>"
+                                     class="post-image">
+                            <?php else: ?>
+                                <div class="post-image-empty">
+                                    <span><?= $escaper->escapeHtml(__('Post Image')) ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="card-body">
+                            <a href="<?= $escaper->escapeUrl($post['link']) ?>">
+                                <h3 class="post-title">
+                                    <?= $escaper->escapeHtml($post['title']['rendered']) ?>
+                                </h3>
+                            </a>
+                            <?php
+                            $postContent = $post['excerpt']['rendered'] ?? '';
+                            if ($postContent): ?>
+                                <?php if (!empty($post['excerpt']['rendered'])): ?>
+                                    <p class="post-content">
+                                        <?= $escaper->escapeHtml(strip_tags($post['excerpt']['rendered'])) ?>
+                                    </p>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <span class="post-date">
+                                <?= $escaper->escapeHtml($block->formatPostDate($post['date'])) ?>
+                            </span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <div class="no-posts">
+                <?= $escaper->escapeHtml(
+                    __('Unable to load posts at this time.') . ' ' . __('Please try again later.')
+                )?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+<script>
+    require([
+        'jquery',
+        'slick'
+    ], function ($) {
+        $(document).ready(function () {
+            const posts = $("#posts > .post-list");
+
+            if (posts.length) {
+                posts.slick({
+                    infinite: false,
+                    slidesToShow: 4,
+                    slidesToScroll: 2,
+                    arrows: true,
+                    dots: true,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                arrows: false,
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+    });
+</script>

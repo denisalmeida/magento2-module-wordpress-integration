@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Ambienz
+ * @package   Ambienz_MageWP
+ * @copyright Copyright © 2024 Denis Almeida | Ambienz
+ * @author    Denis Almeida <https://www.ambienz.com.br>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ambienz\MageWP\Api\BlogRepositoryInterface" type="Ambienz\MageWP\Model\BlogRepository" />
+    <preference for="Ambienz\MageWP\Api\BlogInterface" type="Ambienz\MageWP\Model\Blog" />
+</config>

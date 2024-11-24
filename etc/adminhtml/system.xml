@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @category  Ambienz
+ * @package   Ambienz_MageWP
+ * @copyright Copyright © 2024 Denis Almeida | Ambienz
+ * @author    Denis Almeida <https://www.ambienz.com.br>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ambienz" translate="label" sortOrder="10">
+            <label>Ambienz</label>
+        </tab>
+        <section id="wordpress" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>WordPress Integration</label>
+            <tab>ambienz</tab>
+            <resource>Ambienz_MageWP::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Wordpress Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="api_url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>WordPress API URI</label>
+                    <comment>Enter wordpress API V2 URI (ex: https://website.com/wp-json/wp/v2/)</comment>
+                    <validate>validate-url</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="post_limit" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limit of Posts</label>
+                    <comment>Number of posts to display from WordPress API. If empty default is 10</comment>
+                    <validate>validate-digits</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

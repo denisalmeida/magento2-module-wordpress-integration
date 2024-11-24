@@ -1,0 +1,36 @@
+{
+    "name": "ambienz/wordpress-magento2",
+    "version": "1.0.0",
+    "description": "Integrate Wordpress content into Magento 2 Store with REST API.",
+    "type": "magento2-module",
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Denis Almeida",
+            "email": "denisalmeida@me.com",
+            "homepage": "https://denisalmeida.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Ambienz",
+            "email": "contato@ambienz.com.br",
+            "homepage": "https://ambienz.com.br",
+            "role": "Development Company"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1",
+        "magento/framework": ">=100"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ambienz\\MageWP\\": ""
+        }
+    }
+}
