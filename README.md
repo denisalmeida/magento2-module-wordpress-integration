@@ -2,6 +2,15 @@
 
 Este módulo permite que você integre o WordPress ao Magento 2.
 
+#### Configurações
+
+![Configurações do Admin](docs/admin-settings.png)
+
+#### Exibição no Frontend
+
+![Configurações do Admin](docs/frontend-demo.gif)
+
+
 ## Features
 
 - **Post Carousel:** Exibe um carrossel dos posts mais recentes do wordpress como ultimo elemento da página.
